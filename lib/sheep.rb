@@ -22,6 +22,15 @@ module Sheeps
         @x -= Gosu::offset_x(theta, 3)
         @y -= Gosu::offset_y(theta, 3)
       end
+
+      @window.sheep.each do |sheep|
+        distance_to_other_sheep = Gosu::distance(@x, @y, sheep.x, sheep.y)
+        if distance_to_other_sheep >= 30 && distance_to_other_sheep <= 100
+          theta = Gosu::angle(@x, @y, sheep.x, sheep.y)
+          @x += Gosu::offset_x(theta, 0.4)
+          @y += Gosu::offset_y(theta, 0.4)
+        end
+      end
     end
 
     def draw
