@@ -8,6 +8,8 @@ require_relative 'lib/dog'
 module Sheeps
   class Game < Gosu::Window
 
+    attr_reader :herder, :sheep, :dog
+
     def initialize(x=1200, y=800, resize=false)
       super
       @sheep = []
@@ -20,10 +22,10 @@ module Sheeps
     end
 
     def update
-      # sheep.each do |sheep|
-      #   sheep.move
-      # end
-      #
+      @sheep.each do |sheep|
+        sheep.move
+      end
+
       # herder.move
       # dog.move
     end
