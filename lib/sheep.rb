@@ -32,7 +32,7 @@ module Sheeps
            @y -= Gosu::offset_y(theta, 0.2)
         end
 
-        if distance_to_other_sheep > 30
+        if distance_to_other_sheep > 30 && distance_to_other_sheep < 200
           theta = Gosu::angle(@x, @y, sheep.x, sheep.y)
           @x += Gosu::offset_x(theta, 0.5)
           @y += Gosu::offset_y(theta, 0.5)

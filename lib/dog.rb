@@ -32,6 +32,24 @@ module Sheeps
         end
       end
 
+      if @command == :left
+        if Gosu::distance(@x, @y, @window.herder.x, @window.herder.y)
+          theta = Gosu::angle(@x, @y, @window.herder.x, @window.herder.y) + 89
+
+          @x += Gosu::offset_x(theta, 4)
+          @y += Gosu::offset_y(theta, 4)
+        end
+      end
+
+      if @command == :right
+        if Gosu::distance(@x, @y, @window.herder.x, @window.herder.y)
+          theta = Gosu::angle(@x, @y, @window.herder.x, @window.herder.y) - 89
+
+          @x += Gosu::offset_x(theta, 4)
+          @y += Gosu::offset_y(theta, 4)
+        end
+      end
+
     end
 
     def draw

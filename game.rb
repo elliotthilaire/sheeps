@@ -45,9 +45,11 @@ module Sheeps
       @herder.up if id == Gosu::KbUp
       @herder.down if id == Gosu::KbDown
 
-      @dog.command(:come) if id == Gosu::KbC
-      @dog.command(:stay) if id == Gosu::KbS
-      @dog.command(:go) if id == Gosu::KbG
+      @dog.command(:come) if id == Gosu::KbS
+      @dog.command(:stay) if id == Gosu::KbSpace
+      @dog.command(:go) if id == Gosu::KbW
+      @dog.command(:left) if id == Gosu::KbA
+      @dog.command(:right) if id == Gosu::KbD
 
       close if id == Gosu::KbEscape
     end
