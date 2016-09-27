@@ -26,8 +26,7 @@ module Sheeps
         sheep.move
       end
 
-      # herder.move
-      # dog.move
+      dog.move
     end
 
     def draw
@@ -44,6 +43,10 @@ module Sheeps
       @herder.right if id == Gosu::KbRight
       @herder.up if id == Gosu::KbUp
       @herder.down if id == Gosu::KbDown
+
+      @dog.command(:come) if id == Gosu::KbC
+      @dog.command(:stay) if id == Gosu::KbS
+      @dog.command(:go) if id == Gosu::KbG
 
       close if id == Gosu::KbEscape
     end
