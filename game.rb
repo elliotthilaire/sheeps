@@ -13,7 +13,8 @@ module Sheeps
     def initialize(x=1200, y=800, resize=false)
       super
       @sheep = []
-      5.times do
+
+      10.times do
         @sheep << Sheep.new(self, rand(x), rand(y))
       end
 
