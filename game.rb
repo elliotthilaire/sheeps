@@ -21,6 +21,8 @@ module Sheeps
 
       @herder = Herder.new(self, rand(x), rand(y))
       @dog = Dog.new(self, rand(x), rand(y))
+
+      @field = Gosu::Image.new('media/field.jpg', false)
     end
 
     def update
@@ -32,6 +34,8 @@ module Sheeps
     end
 
     def draw
+      @field.draw(0,0,0,0.5,0.5)
+
       @sheep.each { |sheep| sheep.draw }
       @herder.draw
       @dog.draw

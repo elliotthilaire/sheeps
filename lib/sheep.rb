@@ -6,6 +6,7 @@ module Sheeps
       @x = x
       @y = y
       @font = Gosu::Font.new(@window, Gosu::default_font_name, 16)
+      @image = Gosu::Image.new(@window, 'media/sheep_1.png', false)
     end
 
     def move
@@ -41,7 +42,7 @@ module Sheeps
     end
 
     def draw
-      @font.draw("s", @x, @y, 0)
+      @image.draw(@x, @y, 0, 0.05, 0.05)
     end
   end
 end
