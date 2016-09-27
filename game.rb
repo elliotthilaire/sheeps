@@ -38,6 +38,11 @@ module Sheeps
     end
 
     def button_down(id)
+      @herder.left if id == Gosu::KbLeft
+      @herder.right if id == Gosu::KbRight
+      @herder.up if id == Gosu::KbUp
+      @herder.down if id == Gosu::KbDown
+
       close if id == Gosu::KbEscape
     end
 

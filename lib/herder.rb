@@ -13,6 +13,19 @@ module Sheeps
     #   @y += @vel_y
     # end
 
+    def left
+      @x -= 10
+    end
+    def right
+      @x += 10
+    end
+    def up
+      @y -= 10
+    end
+    def down
+      @y += 10
+    end
+
     def draw
       @font.draw("h", @x, @y, 0)
     end
