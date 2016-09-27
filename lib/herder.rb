@@ -34,9 +34,9 @@ module Sheeps
       offset_x = @image.width / 2
       offset_y = @image.height / 2
       if @direction > 0 && @direction < 180
-        @image.draw(@x - offset_x, @y, 0, 1, 1)
+        @image.draw(@x - offset_x, @y - offset_y, 0, 1, 1)
       else
-        @image.draw(@x, @y - offset_y, 0, -1, 1)
+        @image.draw(@x + offset_x, @y - offset_y, 0, -1, 1)
       end
     end
   end
