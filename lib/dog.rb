@@ -7,6 +7,7 @@ module Sheeps
       @x = x
       @y = y
       @image = Gosu::Image.new(@window, 'media/dog.png', false)
+      @direction = 0
     end
 
     def command(command)
@@ -20,6 +21,7 @@ module Sheeps
 
           @x += Gosu::offset_x(theta, 5)
           @y += Gosu::offset_y(theta, 5)
+          @direction = theta
         end
       end
 
@@ -29,6 +31,7 @@ module Sheeps
 
           @x -= Gosu::offset_x(theta, 5)
           @y -= Gosu::offset_y(theta, 5)
+          @direction = theta
         end
       end
 
@@ -37,6 +40,7 @@ module Sheeps
 
         @x += Gosu::offset_x(theta, 4)
         @y += Gosu::offset_y(theta, 4)
+        @direction = theta
       end
 
       if @command == :right
@@ -44,6 +48,7 @@ module Sheeps
 
         @x += Gosu::offset_x(theta, 4)
         @y += Gosu::offset_y(theta, 4)
+        @direction = theta
      end
    end
 
@@ -54,7 +59,13 @@ module Sheeps
     end
 
     def draw
-      @image.draw(@x, @y, 0, 0.05, 0.05)
+      offset_x = @image.width / 2
+      offset_y = @image.height / 2
+      if @direction > 0 && @direction < 180
+        @image.draw(@x - offset_x, @y, 0, 1, 1)
+      else
+        @image.draw(@x, @y - offset_y, 0, -1, 1)
+      end
     end
   end
 end
