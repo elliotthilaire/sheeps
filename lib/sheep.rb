@@ -46,6 +46,16 @@ module Sheeps
           @direction = theta
         end
       end
+
+      @window.pen.fence.each do |fence_point|
+        if Gosu::distance(@x, @y, fence_point[:x], fence_point[:y]) < 3
+          theta = Gosu::angle(@x, @y, @window.herder.x, @window.herder.y)
+
+          @x -= Gosu::offset_x(theta, 3)
+          @y -= Gosu::offset_y(theta, 3)
+          @direction = theta
+        end
+      end
     end
 
     def draw

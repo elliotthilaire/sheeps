@@ -10,7 +10,7 @@ require_relative 'lib/pen'
 module Sheeps
   class Game < Gosu::Window
 
-    attr_reader :herder, :sheep, :dog
+    attr_reader :herder, :sheep, :dog, :pen
 
     def initialize(x=1200, y=800, resize=false)
       super
@@ -38,11 +38,12 @@ module Sheeps
     def draw
       @field.draw(0,0,0,0.5,0.5)
       @pen.draw
-      
+
       @sheep.each { |sheep| sheep.draw }
       @herder.draw
       @dog.draw
     end
+
 
     def button_up(id)
     end
@@ -58,6 +59,8 @@ module Sheeps
       @dog.command(:go) if id == Gosu::KbW
       @dog.command(:left) if id == Gosu::KbA
       @dog.command(:right) if id == Gosu::KbD
+
+      @pen.open_close if id == Gosu::KbSpace
 
       close if id == Gosu::KbEscape
     end
