@@ -6,7 +6,9 @@ module Sheeps
       @x = x
       @y = y
       @font = Gosu::Font.new(@window, Gosu::default_font_name, 16)
-      @image = Gosu::Image.new(@window, 'media/sheep_1.png', false)
+
+      image = ['media/sheep_1.png','media/sheep_2.png','media/sheep_3.png'].sample
+      @image = Gosu::Image.new(@window, image, false)
       @direction = 0
     end
 
@@ -19,7 +21,7 @@ module Sheeps
         @direction = theta
       end
 
-      if Gosu::distance(@x, @y, @window.dog.x, @window.dog.y) < 40
+      if Gosu::distance(@x, @y, @window.dog.x, @window.dog.y) < 120
         theta = Gosu::angle(@x, @y, @window.dog.x, @window.dog.y)
 
         @x -= Gosu::offset_x(theta, 3)
@@ -30,14 +32,14 @@ module Sheeps
       @window.sheep.reject{ |sheep| sheep == self }.each do |sheep|
         distance_to_other_sheep = Gosu::distance(@x, @y, sheep.x, sheep.y)
 
-        if distance_to_other_sheep < 25
+        if distance_to_other_sheep < 50
            theta = Gosu::angle(@x, @y, sheep.x, sheep.y)
-           @x -= Gosu::offset_x(theta, 0.2)
-           @y -= Gosu::offset_y(theta, 0.2)
+           @x -= Gosu::offset_x(theta, 0.7)
+           @y -= Gosu::offset_y(theta, 0.7)
            @direction = theta
         end
 
-        if distance_to_other_sheep > 50 && distance_to_other_sheep < 200
+        if distance_to_other_sheep > 100 && distance_to_other_sheep < 200
           theta = Gosu::angle(@x, @y, sheep.x, sheep.y)
           @x += Gosu::offset_x(theta, 0.5)
           @y += Gosu::offset_y(theta, 0.5)

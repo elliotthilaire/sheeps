@@ -5,6 +5,7 @@ require 'pry'
 require_relative 'lib/sheep'
 require_relative 'lib/herder'
 require_relative 'lib/dog'
+require_relative 'lib/pen'
 
 module Sheeps
   class Game < Gosu::Window
@@ -21,6 +22,7 @@ module Sheeps
 
       @herder = Herder.new(self, rand(x), rand(y))
       @dog = Dog.new(self, rand(x), rand(y))
+      @pen = Pen.new(self, rand(x-200), rand(y))
 
       @field = Gosu::Image.new('media/field.jpg', false)
     end
@@ -35,7 +37,8 @@ module Sheeps
 
     def draw
       @field.draw(0,0,0,0.5,0.5)
-
+      @pen.draw
+      
       @sheep.each { |sheep| sheep.draw }
       @herder.draw
       @dog.draw

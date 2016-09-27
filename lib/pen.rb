@@ -1,20 +1,22 @@
 module Sheeps
-  class Herder
+  class Pen
     attr_reader :x, :y
     def initialize(window, x, y)
       @window = window
       @x = x
       @y = y
-      @font = Gosu::Font.new(@window, Gosu::default_font_name, 16)
+      @open = false
+
+      @gate_open_image = Gosu::Image.new(@window, 'media/gate_open.png', false)
+      @gate_closed_image = Gosu::Image.new(@window, 'media/gate_closed.png', false)
     end
 
-    # def move
-    #   @x += @vel_x
-    #   @y += @vel_y
-    # end
-
     def draw
-      draw_line(x1, y1, c1, x2, y2, c2, z=0, mode=:default); end
+      if @open == true
+        @gate_open_image.draw(@x, @y, 0)
+      else
+        @gate_open_image.draw(@x, @y, 0)
+      end
     end
   end
 end
