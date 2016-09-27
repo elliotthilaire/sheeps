@@ -15,6 +15,13 @@ module Sheeps
         @x -= Gosu::offset_x(theta, 1)
         @y -= Gosu::offset_y(theta, 1)
       end
+
+      if Gosu::distance(@x, @y, @window.dog.x, @window.dog.y) < 40
+        theta = Gosu::angle(@x, @y, @window.dog.x, @window.dog.y)
+
+        @x -= Gosu::offset_x(theta, 3)
+        @y -= Gosu::offset_y(theta, 3)
+      end
     end
 
     def draw
