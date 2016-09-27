@@ -33,23 +33,24 @@ module Sheeps
       end
 
       if @command == :left
-        if Gosu::distance(@x, @y, @window.herder.x, @window.herder.y)
-          theta = Gosu::angle(@x, @y, @window.herder.x, @window.herder.y) + 89
+        theta = Gosu::angle(@x, @y, closest_sheep.x, closest_sheep.y) + 60
 
-          @x += Gosu::offset_x(theta, 4)
-          @y += Gosu::offset_y(theta, 4)
-        end
+        @x += Gosu::offset_x(theta, 4)
+        @y += Gosu::offset_y(theta, 4)
       end
 
       if @command == :right
-        if Gosu::distance(@x, @y, @window.herder.x, @window.herder.y)
-          theta = Gosu::angle(@x, @y, @window.herder.x, @window.herder.y) - 89
+        theta = Gosu::angle(@x, @y, closest_sheep.x, closest_sheep.y) - 60
 
-          @x += Gosu::offset_x(theta, 4)
-          @y += Gosu::offset_y(theta, 4)
-        end
-      end
+        @x += Gosu::offset_x(theta, 4)
+        @y += Gosu::offset_y(theta, 4)
+     end
+   end
 
+    def closest_sheep
+      @window.sheep.sort_by do |sheep|
+        Gosu::distance(@x, @y, sheep.x, sheep.y)
+      end.first
     end
 
     def draw

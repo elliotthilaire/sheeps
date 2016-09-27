@@ -1,5 +1,6 @@
 
 require 'gosu'
+require 'pry'
 
 require_relative 'lib/sheep'
 require_relative 'lib/herder'
