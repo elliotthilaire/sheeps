@@ -10,11 +10,6 @@ module Sheeps
       @direction = 0
     end
 
-    # def move
-    #   @x += @vel_x
-    #   @y += @vel_y
-    # end
-
     def left
       @x -= 10
       @direction = 270
