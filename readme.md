@@ -2,7 +2,7 @@
 
 A sheep herding game made in a day at [http://scotland.railscamp.eu/])Rails Camp Scotland 2016).
 
-![screen_1.jpg]
+![screen_1.jpg](screen_1.jpg)
 
 The day before arriving at Rails Camp in Scotland we turned on the TV in our motel and watched sheep herding championships.
 
@@ -10,20 +10,18 @@ I decided to make a game. I looked up the commands the herders used
 
 ## Setup
 
-1. Install [https://github.com/gosu/gosu/wiki](gosu)
-
-e.g.
-
+Install [https://github.com/gosu/gosu/wiki](gosu)
+e.g.,
 ```
 brew install sdl2
 ```
 
-2. Install gems
+Install gems
 ```
 bundle install
 ```
 
-3. Launch the game
+Launch the game
 ```
 ruby game.rb
 ```
