@@ -2,7 +2,7 @@
 
 A sheep herding game made in a day at [Rails Camp Scotland 2016](http://scotland.railscamp.eu/).
 
-![screen_1.jpg](screen_1.jpg)
+![demo.gif](demo.gif)
 
 ## Setup
 
