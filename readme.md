@@ -4,6 +4,8 @@ A sheep herding game made in a day at [Rails Camp Scotland 2016](http://scotland
 
 ![demo.gif](demo.gif)
 
+I spent the day before [Rails Camp Scotland 2016](http://scotland.railscamp.eu/) exploring the country side of Scotland; one word: Sheep. That night I flicked on the TV. It was sheep herding. I was inspired and decided to try making a game based on the real deal.
+
 ## Setup
 
 Install [prerequisites for gosu](https://github.com/gosu/gosu/wiki)
