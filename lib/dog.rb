@@ -3,11 +3,11 @@ module Sheeps
     attr_reader :x, :y
     def initialize(window, x, y)
       @window = window
-      @command = nil
       @x = x
       @y = y
       @image = Gosu::Image.new(@window, 'media/dog.png', false)
       @direction = 0
+      @command = nil
     end
 
     def command(command)
@@ -16,46 +16,32 @@ module Sheeps
 
     def move
       if @command == :come
-        if Gosu::distance(@x, @y, @window.herder.x, @window.herder.y) >= 20
-          theta = Gosu::angle(@x, @y, @window.herder.x, @window.herder.y)
-
-          @x += Gosu::offset_x(theta, 5)
-          @y += Gosu::offset_y(theta, 5)
-          @direction = theta
+        if Gosu::distance(@x, @y, herder.x, herder.y) >= 20
+          @direction = Gosu::angle(@x, @y, herder.x, herder.y)
+          @x += Gosu::offset_x(@direction, 5)
+          @y += Gosu::offset_y(@direction, 5)
         end
       end
 
       if @command == :go
-        if Gosu::distance(@x, @y, @window.herder.x, @window.herder.y)
-          theta = Gosu::angle(@x, @y, @window.herder.x, @window.herder.y)
-
-          @x -= Gosu::offset_x(theta, 5)
-          @y -= Gosu::offset_y(theta, 5)
-          @direction = theta
+        if Gosu::distance(@x, @y, herder.x, herder.y)
+          @direction = Gosu::angle(@x, @y, herder.x, herder.y)
+          @x -= Gosu::offset_x(@direction, 5)
+          @y -= Gosu::offset_y(@direction, 5)
         end
       end
 
       if @command == :left
-        theta = Gosu::angle(@x, @y, closest_sheep.x, closest_sheep.y) + 60
-
-        @x += Gosu::offset_x(theta, 4)
-        @y += Gosu::offset_y(theta, 4)
-        @direction = theta
+        @direction = Gosu::angle(@x, @y, closest_sheep.x, closest_sheep.y) + 60
+        @x += Gosu::offset_x(@direction, 4)
+        @y += Gosu::offset_y(@direction, 4)
       end
 
       if @command == :right
-        theta = Gosu::angle(@x, @y, closest_sheep.x, closest_sheep.y) - 60
-
-        @x += Gosu::offset_x(theta, 4)
-        @y += Gosu::offset_y(theta, 4)
-        @direction = theta
-     end
-   end
-
-    def closest_sheep
-      @window.sheep.sort_by do |sheep|
-        Gosu::distance(@x, @y, sheep.x, sheep.y)
-      end.first
+        @direction = Gosu::angle(@x, @y, closest_sheep.x, closest_sheep.y) - 60
+        @x += Gosu::offset_x(@direction, 4)
+        @y += Gosu::offset_y(@direction, 4)
+      end
     end
 
     def draw
@@ -66,6 +52,18 @@ module Sheeps
       else
         @image.draw(@x + offset_x, @y - offset_y, 0, -1, 1)
       end
+    end
+
+    private
+
+    def herder
+      @window.herder
+    end
+
+    def closest_sheep
+      @window.sheep.sort_by do |sheep|
+        Gosu::distance(@x, @y, sheep.x, sheep.y)
+      end.first
     end
   end
 end
