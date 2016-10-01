@@ -1,6 +1,4 @@
-
 require 'gosu'
-require 'pry'
 
 require_relative 'lib/sheep'
 require_relative 'lib/herder'
@@ -14,12 +12,8 @@ module Sheeps
 
     def initialize(x=1200, y=800, resize=false)
       super
-      @sheep = []
 
-      10.times do
-        @sheep << Sheep.new(self, rand(x), rand(y))
-      end
-
+      @sheep = Array.new(10) { Sheep.new(self, rand(x), rand(y)) }
       @herder = Herder.new(self, rand(x), rand(y))
       @dog = Dog.new(self, rand(x), rand(y))
       @pen = Pen.new(self, rand(x-200), rand(y))
@@ -44,7 +38,6 @@ module Sheeps
       @dog.draw
     end
 
-
     def button_up(id)
     end
 
@@ -64,7 +57,6 @@ module Sheeps
 
       close if id == Gosu::KbEscape
     end
-
   end
 end
 
