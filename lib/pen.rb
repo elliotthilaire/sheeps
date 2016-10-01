@@ -1,23 +1,26 @@
 module Sheeps
   class Pen
-    attr_reader :x, :y, :fence
+    attr_reader :x, :y
     def initialize(window, x, y)
       @window = window
       @x = x
       @y = y
       @open = true
-
-      @gate_open_image = Gosu::Image.new(@window, 'media/gate_open.png', false)
-      @gate_closed_image = Gosu::Image.new(@window, 'media/gate_closed.png', false)
-
-      @fence = open_fence
     end
 
-    def open_fence
-      line_1 = (@x...(@x + @gate_open_image.width)).map { |x_coord| {x: x_coord, y: @y} }
-      line_2 = (@y...(@y + @gate_open_image.height)).map { |y_coord| {x: @x, y: y_coord} }
-      line_3 = (@y...(@y + (@gate_open_image.height / 2))).map { |y_coord| {x: (@x + @gate_open_image.width), y: y_coord} }
-      line_1 + line_2 + line_3
+    def fence
+      top_fence = (@x...@x + image.width).map { |x_coord| { x: x_coord, y: @y } }
+      left_fence = (@y...@y + (image.height / 2)).map { |y_coord| { x: @x, y: y_coord } }
+      right_fence = (@y...@y + (image.height / 2)).map { |y_coord| { x: @x + image.width, y: y_coord } }
+      open_gate = (@y + image.height / 2...@y + image.height).map { |y_coord| { x: @x, y: y_coord } }
+      closed_gate = (@x...@x + image.width).map { |x_coord| { x: x_coord, y: @y + image.height / 2 } }
+      fence = top_fence + left_fence + right_fence
+      if @open
+        fence += open_gate
+      else
+        fence += closed_gate
+      end
+      fence
     end
 
     def open_close
@@ -25,12 +28,17 @@ module Sheeps
     end
 
     def draw
-      if @open == true
-        @gate_open_image.draw(@x, @y, 0)
-      else
-        @gate_closed_image.draw(@x, @y, 0)
-      end
+      image.draw(@x, @y, 0)
     end
 
+    private
+
+    def image
+      if @open
+        @open_image ||= Gosu::Image.new(@window, 'media/gate_open.png', false)
+      else
+        @closed_image ||= Gosu::Image.new(@window, 'media/gate_closed.png', false)
+      end
+    end
   end
 end
