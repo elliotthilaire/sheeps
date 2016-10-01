@@ -5,7 +5,6 @@ module Sheeps
       @window = window
       @x = x
       @y = y
-      @font = Gosu::Font.new(@window, Gosu::default_font_name, 16)
       @image = Gosu::Image.new(@window, 'media/herder.png', false)
       @direction = 0
     end
@@ -14,13 +13,16 @@ module Sheeps
       @x -= 10
       @direction = 270
     end
+
     def right
       @x += 10
       @direction = 90
     end
+
     def up
       @y -= 10
     end
+
     def down
       @y += 10
     end
