@@ -16,7 +16,7 @@ module Sheeps
 
     def move
       if @command == :come
-        if Gosu::distance(@x, @y, herder.x, herder.y) >= 20
+        if Gosu::distance(@x, @y, herder.x, herder.y) >= 35
           @direction = Gosu::angle(@x, @y, herder.x, herder.y)
           @x += Gosu::offset_x(@direction, 5)
           @y += Gosu::offset_y(@direction, 5)
@@ -25,9 +25,9 @@ module Sheeps
 
       if @command == :go
         if Gosu::distance(@x, @y, herder.x, herder.y)
-          @direction = Gosu::angle(@x, @y, herder.x, herder.y)
-          @x -= Gosu::offset_x(@direction, 5)
-          @y -= Gosu::offset_y(@direction, 5)
+          @direction = Gosu::angle(herder.x, herder.y, @x, @y)
+          @x += Gosu::offset_x(@direction, 5)
+          @y += Gosu::offset_y(@direction, 5)
         end
       end
 

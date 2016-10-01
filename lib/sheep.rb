@@ -10,39 +10,39 @@ module Sheeps
     end
 
     def move
-      if Gosu::distance(@x, @y, herder.x, herder.y) < 25
-        @direction = Gosu::angle(@x, @y, herder.x, herder.y)
-        @x -= Gosu::offset_x(@direction, 1)
-        @y -= Gosu::offset_y(@direction, 1)
-      end
-
-      if Gosu::distance(@x, @y, dog.x, dog.y) < 120
-        @direction = Gosu::angle(@x, @y, dog.x, dog.y)
-        @x -= Gosu::offset_x(@direction, 3)
-        @y -= Gosu::offset_y(@direction, 3)
-      end
-
       other_sheep.each do |sheep|
         distance_to_other_sheep = Gosu::distance(@x, @y, sheep.x, sheep.y)
 
         if distance_to_other_sheep < 50
-           @direction = Gosu::angle(@x, @y, sheep.x, sheep.y)
-           @x -= Gosu::offset_x(@direction, 0.7)
-           @y -= Gosu::offset_y(@direction, 0.7)
+           theta = Gosu::angle(sheep.x, sheep.y, @x, @y)
+           @x += Gosu::offset_x(theta, 0.7)
+           @y += Gosu::offset_y(theta, 0.7)
         end
 
         if distance_to_other_sheep > 100 && distance_to_other_sheep < 200
-          @direction = Gosu::angle(@x, @y, sheep.x, sheep.y)
-          @x += Gosu::offset_x(@direction, 0.5)
-          @y += Gosu::offset_y(@direction, 0.5)
+          theta = Gosu::angle(@x, @y, sheep.x, sheep.y)
+          @x += Gosu::offset_x(theta, 0.5)
+          @y += Gosu::offset_y(theta, 0.5)
         end
+      end
+
+      if Gosu::distance(@x, @y, herder.x, herder.y) < 45
+        @direction = Gosu::angle(herder.x, herder.y, @x, @y)
+        @x += Gosu::offset_x(@direction, 1)
+        @y += Gosu::offset_y(@direction, 1)
+      end
+
+      if Gosu::distance(@x, @y, dog.x, dog.y) < 120
+        @direction = Gosu::angle(dog.x, dog.y, @x, @y)
+        @x += Gosu::offset_x(@direction, 3)
+        @y += Gosu::offset_y(@direction, 3)
       end
 
       pen.fence.each do |fence_point|
         if Gosu::distance(@x, @y, fence_point[:x], fence_point[:y]) < 3
-          @direction = Gosu::angle(@x, @y, fence_point[:x], fence_point[:y])
-          @x -= Gosu::offset_x(@direction, 3)
-          @y -= Gosu::offset_y(@direction, 3)
+          @direction = Gosu::angle(fence_point[:x], fence_point[:y], @x, @y)
+          @x += Gosu::offset_x(@direction, 3)
+          @y += Gosu::offset_y(@direction, 3)
         end
       end
     end
