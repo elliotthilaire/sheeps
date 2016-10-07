@@ -27,8 +27,12 @@ module Sheeps
       @fences << Fence.new(self, x1=10, y1=0, x2=10, y2=height)
       @fences << Fence.new(self, x1=width-10, y1=0, x2=width-10, y2=height)
       
+      border_width = 50
       @obstacles = []
-      @obstacles << Obstacle.new(self, 200, 200, 200, 200)
+      @obstacles << Obstacle.new(self, 0, 0, width, border_width)
+      @obstacles << Obstacle.new(self, 0, 0, border_width, height)
+      @obstacles << Obstacle.new(self, width-border_width, 0, border_width, height)
+      @obstacles << Obstacle.new(self, 0, height-border_width, width, border_width)
 
       @field = Gosu::Image.new('media/field.jpg', false)
       @debugger = Debugger.new(self)

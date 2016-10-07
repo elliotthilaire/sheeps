@@ -10,8 +10,8 @@ module Sheeps
     end
 
     def draw
-      red = Gosu::Color.argb(0xff_ff0000)
-      @window.draw_line(@x1, @y1, red, @x2, @y2, red, z = 0, mode = :default)
+      # red = Gosu::Color.argb(0xff_ff0000)
+      # @window.draw_line(@x1, @y1, red, @x2, @y2, red, z = 0, mode = :default)
     end
   end
 end
