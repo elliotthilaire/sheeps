@@ -5,12 +5,13 @@ require_relative 'lib/herder'
 require_relative 'lib/dog'
 require_relative 'lib/pen'
 require_relative 'lib/fence'
+require_relative 'lib/obstacle'
 require_relative 'lib/debugger'
 
 module Sheeps
   class Game < Gosu::Window
 
-    attr_reader :herder, :sheep, :dog, :pen
+    attr_reader :herder, :sheep, :dog, :pen, :obstacles
 
     def initialize(x=1200, y=800, resize=false)
       super
@@ -26,6 +27,9 @@ module Sheeps
       @fences << Fence.new(self, x1=10, y1=0, x2=10, y2=height)
       @fences << Fence.new(self, x1=width-10, y1=0, x2=width-10, y2=height)
       
+      @obstacles = []
+      @obstacles << Obstacle.new(self, 200, 200, 200, 200)
+
       @field = Gosu::Image.new('media/field.jpg', false)
       @debugger = Debugger.new(self)
     end
@@ -46,7 +50,9 @@ module Sheeps
       @herder.draw
       @dog.draw
 
-      @fences.each {|fence| fence.draw }
+      @fences.each { |fence| fence.draw }
+      @obstacles.each { |obstacle| obstacle.draw }
+
       @debugger.draw
     end
 

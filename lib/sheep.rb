@@ -10,6 +10,9 @@ module Sheeps
     end
 
     def move
+      obstacles.each do |obstacle|
+      end
+
       other_sheep.each do |sheep|
         distance_to_other_sheep = Gosu::distance(@x, @y, sheep.x, sheep.y)
 
@@ -73,6 +76,10 @@ module Sheeps
 
     def pen
       @window.pen
+    end
+
+    def obstacles
+      @window.obstacles
     end
 
     def random_sheep_image

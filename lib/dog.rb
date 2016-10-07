@@ -65,5 +65,9 @@ module Sheeps
         Gosu::distance(@x, @y, sheep.x, sheep.y)
       end.first
     end
+
+    def obstacles
+      @window.obstacles
+    end
   end
 end
