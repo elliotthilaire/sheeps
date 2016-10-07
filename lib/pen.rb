@@ -23,7 +23,7 @@ module Sheeps
       fence
     end
 
-    def open_close
+    def toggle_gate
       @open = !@open
     end
 

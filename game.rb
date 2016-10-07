@@ -56,7 +56,7 @@ module Sheeps
       @dog.command(:left) if id == Gosu::KbA
       @dog.command(:right) if id == Gosu::KbD
 
-      @pen.open_close if id == Gosu::KbSpace
+      @pen.toggle_gate if id == Gosu::KbSpace
 
       close if id == Gosu::KbEscape
     end
