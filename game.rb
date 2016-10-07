@@ -4,6 +4,7 @@ require_relative 'lib/sheep'
 require_relative 'lib/herder'
 require_relative 'lib/dog'
 require_relative 'lib/pen'
+require_relative 'lib/fence'
 require_relative 'lib/debugger'
 
 module Sheeps
@@ -19,6 +20,12 @@ module Sheeps
       @dog = Dog.new(self, rand(x), rand(y))
       @pen = Pen.new(self, 750, 200)
 
+      @fences = []
+      @fences << Fence.new(self, x1=0, y1=height-10, x2=width, y2=height-10)
+      @fences << Fence.new(self, x1=0, y1=10, x2=width, y2=10)
+      @fences << Fence.new(self, x1=10, y1=0, x2=10, y2=height)
+      @fences << Fence.new(self, x1=width-10, y1=0, x2=width-10, y2=height)
+      
       @field = Gosu::Image.new('media/field.jpg', false)
       @debugger = Debugger.new(self)
     end
@@ -38,6 +45,8 @@ module Sheeps
       @sheep.each { |sheep| sheep.draw }
       @herder.draw
       @dog.draw
+
+      @fences.each {|fence| fence.draw }
       @debugger.draw
     end
 
