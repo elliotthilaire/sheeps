@@ -17,7 +17,7 @@ module Sheeps
       @sheep = Array.new(10) { Sheep.new(self, rand(x), rand(y)) }
       @herder = Herder.new(self, rand(x), rand(y))
       @dog = Dog.new(self, rand(x), rand(y))
-      @pen = Pen.new(self, rand(x-200), rand(y))
+      @pen = Pen.new(self, 750, 200)
 
       @field = Gosu::Image.new('media/field.jpg', false)
       @debugger = Debugger.new(self)
