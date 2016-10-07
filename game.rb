@@ -4,6 +4,7 @@ require_relative 'lib/sheep'
 require_relative 'lib/herder'
 require_relative 'lib/dog'
 require_relative 'lib/pen'
+require_relative 'lib/debugger'
 
 module Sheeps
   class Game < Gosu::Window
@@ -19,6 +20,7 @@ module Sheeps
       @pen = Pen.new(self, rand(x-200), rand(y))
 
       @field = Gosu::Image.new('media/field.jpg', false)
+      @debugger = Debugger.new(self)
     end
 
     def update
@@ -36,6 +38,7 @@ module Sheeps
       @sheep.each { |sheep| sheep.draw }
       @herder.draw
       @dog.draw
+      @debugger.draw
     end
 
     def button_up(id)
@@ -56,6 +59,10 @@ module Sheeps
       @pen.open_close if id == Gosu::KbSpace
 
       close if id == Gosu::KbEscape
+    end
+
+    def needs_cursor?
+      true
     end
   end
 end
