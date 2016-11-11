@@ -1,6 +1,6 @@
 # Sheeps
 
-A sheep herding game made in a day at [Rails Camp Scotland 2016](http://scotland.railscamp.eu/).
+A sheep herding game made at [Rails Camp Scotland 2016](http://scotland.railscamp.eu/).
 
 ![demo.gif](demo.gif)
 
